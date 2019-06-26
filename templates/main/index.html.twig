@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div id="main">
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/runtime.js') }}"></script>
+    <script src="{{ asset('build/main.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/main.css') }}" />
+{% endblock %}
