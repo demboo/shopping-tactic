@@ -43,6 +43,28 @@ self.addEventListener('fetch', function (evt) {
       })
   );
 });
+
+let deferredPrompt;
+
+self.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+
+  deferredPrompt.prompt();
+  // Wait for the user to respond to the prompt
+  deferredPrompt.userChoice
+      .then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        deferredPrompt = null;
+      });
+});
+
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
  * requests for URLs in the manifest.
@@ -66,7 +88,7 @@ self.__precacheManifest = [
     "revision": "993f0e96c94cde1cb6389b223ca5ffbf"
   },
   {
-    "url": "",
+    "url": "/",
     "revision": "6e78a27d8a998ed4d56a2b008184829c"
   }
 ].concat(self.__precacheManifest || []);
