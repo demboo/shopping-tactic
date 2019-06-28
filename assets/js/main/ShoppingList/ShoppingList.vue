@@ -5,37 +5,18 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         name: "ShoppingList",
         data() {
             return {
-                positions: [
-                    {
-                        id: 1,
-                        name: 'mleko',
-                        count: 1,
-                        description: 'w proszku'
-                    },
-                    {
-                        id: 1,
-                        name: 'chleb razowy',
-                        count: 6,
-                        description: 'w proszku'
-                    },
-                    {
-                        id: 1,
-                        name: 'jaja',
-                        count: 24,
-                        description: 'w proszku'
-                    },
-                    {
-                        id: 1,
-                        name: 'woda gazowana zgrzewka',
-                        count: 1,
-                        description: 'w proszku'
-                    }
-                ]
+                positions: null
             }
+        },
+        async mounted() {
+            const {data} = await axios.get('/shopping-list-data');
+            this.positions = data;
         }
     }
 </script>
