@@ -13,12 +13,36 @@
 
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
+const CACHE_NAME = 'shopping-tactic-cache';
+
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
 });
 
+self.addEventListener('install', function (evt) {
+  evt.waitUntil(
+      caches.open(CACHE_NAME).then(function (cache) {
+        return cache.addAll(filesToCache);
+      }).catch(function (err) {
+        // Snooze errors...
+        // console.error(err);
+      })
+  );
+});
+
+self.addEventListener('fetch', function (evt) {
+  // Snooze logs...
+  // console.log(event.request.url);
+  evt.respondWith(
+      // Firstly, send request..
+      fetch(evt.request).catch(function () {
+        // When request failed, return file from cache...
+        return caches.match(evt.request);
+      })
+  );
+});
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
  * requests for URLs in the manifest.
