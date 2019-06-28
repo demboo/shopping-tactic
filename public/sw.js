@@ -22,14 +22,14 @@ self.addEventListener('message', (event) => {
 });
 
 self.addEventListener('install', function (evt) {
-  evt.waitUntil(
-      caches.open(CACHE_NAME).then(function (cache) {
-        return cache.addAll(filesToCache);
-      }).catch(function (err) {
-        // Snooze errors...
-        // console.error(err);
-      })
-  );
+  // evt.waitUntil(
+  //     caches.open(CACHE_NAME).then(function (cache) {
+  //       return cache.addAll(filesToCache);
+  //     }).catch(function (err) {
+  //       // Snooze errors...
+  //       // console.error(err);
+  //     })
+  // );
 });
 
 self.addEventListener('fetch', function (evt) {
@@ -66,7 +66,7 @@ self.__precacheManifest = [
     "revision": "993f0e96c94cde1cb6389b223ca5ffbf"
   },
   {
-    "url": "",
+    "url": "/",
     "revision": "6e78a27d8a998ed4d56a2b008184829c"
   }
 ].concat(self.__precacheManifest || []);
