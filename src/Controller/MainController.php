@@ -24,7 +24,7 @@ class MainController extends Controller
     }
 
     /**
-     * @Route("/shopping-list-data", name="shopping_list_data")
+     * @Route("/app/shopping-list-data", name="shopping_list_data")
      * @return JsonResponse
      */
     public function getShoppingList(): JsonResponse

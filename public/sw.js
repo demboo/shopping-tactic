@@ -42,7 +42,7 @@ self.__precacheManifest = [
     "revision": "993f0e96c94cde1cb6389b223ca5ffbf"
   },
   {
-    "url": "index.php",
+    "url": "",
     "revision": "6e78a27d8a998ed4d56a2b008184829c"
   }
 ].concat(self.__precacheManifest || []);

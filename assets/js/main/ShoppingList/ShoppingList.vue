@@ -15,7 +15,7 @@
             }
         },
         async mounted() {
-            const {data} = await axios.get('/shopping-list-data');
+            const {data} = await axios.get('/app/shopping-list-data');
             this.positions = data;
         }
     }
